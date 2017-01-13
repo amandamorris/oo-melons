@@ -1,5 +1,6 @@
 """This file should have our order classes in it."""
 import random
+import datetime
 
 class MelonOrder(object):
     """Base class for melon order"""
@@ -15,7 +16,12 @@ class MelonOrder(object):
     def get_base_price(self):
         """Calculate base price for splurge pricing"""
 
-        return random.choice([5, 6, 7, 8, 9])
+        base_price = random.choice([5, 6, 7, 8, 9])
+        my_date = datetime.datetime.now()
+        #if my_date.weekday() < 5 and my_date.hour in [8, 9, 10]:
+        if my_date.weekday() < 5 and my_date.hour in [12, 13, 14]:
+            base_price += 4.00
+        return base_price
 
     def get_total(self):
         """Calculate price."""
